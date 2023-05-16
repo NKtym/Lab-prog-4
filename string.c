@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "string.h"
+#include "strings.h"
 
 size_t slen(char *str)//+
 {
@@ -9,6 +9,7 @@ size_t slen(char *str)//+
         len++;
     return len;
 }
+
 char* stok(char *str, char *delim)//+
 {
     static char *p;
@@ -51,13 +52,6 @@ char* stok(char *str, char *delim)//+
     }
 }
 
-/*void suntok(char* str, char* delim; char** ptr; int cnt){
-    for(int i = 1; i < cnt; i++){
-	*(ptr[i]-1)=delim;
-    }
-}
-*/
-
 int scmp(char *str1, char *str2)//+
 {
     while (*str1)
@@ -98,7 +92,7 @@ char *schr(char *str, char c)//+
         return NULL;
 }
 
-int is_del(char c, char *delim)//+
+int is_del(char c, char *delim)
 {
     while (*delim != '\0')
     {
@@ -107,4 +101,25 @@ int is_del(char c, char *delim)//+
         delim++;
     }
     return 0;
+}
+
+char* s_upper(char* str){
+    str[0]=str[0]-32;
+    return str;
+}
+
+void delchar(char *str){
+    for(int i=0;i<slen(str);++i)
+    	str[i]=str[i+1];
+}
+
+char *scat(char *str1, char *str2)
+{
+    char *ptr = str1 + slen(str1);
+    while (*str2 != '\0')
+    {
+        *ptr++ = *str2++;
+    }
+    *ptr = '\0';
+    return str1;
 }
